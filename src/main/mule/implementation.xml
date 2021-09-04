@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="83e9d477-71ce-45e0-ad2d-b49ea46db964" >
+		<salesforce:basic-connection username="gnanasagar.vitapu-dcuv@force.com" password="Gnanasagar@salesforce1" securityToken="eIrg3enQoDqRSYajBUqvXJQW4" />
+	</salesforce:sfdc-config>
+	<flow name="getPatientByID" doc:id="a9749551-b889-4068-ba04-cf811ade9d02" >
+		<salesforce:query doc:name="Query" doc:id="7751c0aa-5011-4dbc-9b0b-fcfd37dba59d" config-ref="Salesforce_Config">
+			<salesforce:salesforce-query ><![CDATA[select Name from Account where pid__c=':id']]></salesforce:salesforce-query>
+			<salesforce:parameters ><![CDATA[#[output application/java
+---
+{
+	id : attributes.uriParams.id
+}]]]></salesforce:parameters>
+		</salesforce:query>
+		<ee:transform doc:name="Transform Message" doc:id="dc959b8d-0e17-494d-81a1-147fc6b78aa4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	name: payload.Name
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
