@@ -8,9 +8,6 @@
 	<packaging>mule-application</packaging>
 
 	<name>fhir-poc-patient-salesforce</name>
-	
-	
-	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,6 +29,17 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+					<username>GnanasagarVitapu</username>
+					<environment>Sandbox</environment>
+					<workers>1</workers>
+					<workerType>Micro</workerType>
+					<applicationName>fhir-poc-patient-salesforce</applicationName>
+					<muleVersion>4.3.0</muleVersion>
+					<password>V1tapu@mulesoft</password>
+					</cloudHubDeployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
