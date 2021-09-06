@@ -30,16 +30,18 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<cloudHubDeployment>
-						<username>GnanasagarVitapu</username>
-						<password>V1tapu@mulesoft</password>
-						<environment>Sandbox</environment>
-						<workers>1</workers>
-						<workerType>Micro</workerType>
-						<applicationName>fhir-poc-patient-salesforce</applicationName>
-						<muleVersion>4.3.0</muleVersion>
-					</cloudHubDeployment>
-				</configuration>
+                    <cloudHubDeployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <muleVersion>4.3.0</muleVersion>
+                        <username>GnanasagarVitapu</username>
+                        <password>V1tapu@mulesoft</password>
+                        <applicationName>fhir-poc-patient-salesforce</applicationName>
+                        <environment>Sandbox</environment>
+                        <workerType>MICRO</workerType>
+                        <objectStoreV2>true</objectStoreV2>
+                    </cloudHubDeployment>
+                </configuration>
+
 			</plugin>
 		</plugins>
 	</build>
