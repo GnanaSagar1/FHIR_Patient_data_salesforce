@@ -31,13 +31,13 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
-					<username>GnanasagarVitapu</username>
-					<environment>Sandbox</environment>
-					<workers>1</workers>
-					<workerType>Micro</workerType>
-					<applicationName>fhir-poc-patient-salesforce</applicationName>
-					<muleVersion>4.3.0</muleVersion>
-					<password>V1tapu@mulesoft</password>
+						<username>GnanasagarVitapu</username>
+						<password>V1tapu@mulesoft</password>
+						<environment>Sandbox</environment>
+						<workers>1</workers>
+						<workerType>Micro</workerType>
+						<applicationName>fhir-poc-patient-salesforce</applicationName>
+						<muleVersion>4.3.0</muleVersion>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
