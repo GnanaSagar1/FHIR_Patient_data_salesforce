@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</salesforce:sfdc-config>
 	<flow name="getPatientByID" doc:id="a9749551-b889-4068-ba04-cf811ade9d02" >
 		<salesforce:query doc:name="Query" doc:id="7751c0aa-5011-4dbc-9b0b-fcfd37dba59d" config-ref="Salesforce_Config">
-			<salesforce:salesforce-query ><![CDATA[select Name from Account where pid__c=':id']]></salesforce:salesforce-query>
+			<salesforce:salesforce-query ><![CDATA[select Name, Phone from Account where pid__c=':id']]></salesforce:salesforce-query>
 			<salesforce:parameters ><![CDATA[#[output application/java
 ---
 {
@@ -23,7 +23,8 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 output application/json
 ---
 {
-	name: payload.Name
+	name: payload.Name,
+	phone: payload.Phone
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
