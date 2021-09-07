@@ -29,4 +29,31 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
+	<flow name="updateData" doc:id="3fa6ebd0-f6f5-46de-a9cb-34beb49914a3" >
+		<ee:transform doc:name="json to java" doc:id="03b09a8e-d9d8-4514-a6d7-68d5fa4482bf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+[{
+ pid__c: payload.id,
+    Name: payload.name[0].use,
+    BillingCity: payload.address[0].city,
+    BillingState: payload.address[0].state,
+    BillingPostalCode: payload.address[0].postalCode,
+    Phone: payload.telecom[0].value
+}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<salesforce:upsert doc:name="Upsert" doc:id="c2cabadb-419d-460f-b897-3ccf0e2ea3d8" config-ref="Salesforce_Config" objectType="Account" externalIdFieldName="pid__c"/>
+		<ee:transform doc:name="Transform Message" doc:id="8dd18e81-b795-4077-960f-48dcfd034352" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 </mule>
